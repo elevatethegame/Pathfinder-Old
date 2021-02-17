@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import PathfinderApp from './PathfinderApp/PathfinderApp';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <PathfinderApp />
   </React.StrictMode>,
   document.getElementById('root')
 );
