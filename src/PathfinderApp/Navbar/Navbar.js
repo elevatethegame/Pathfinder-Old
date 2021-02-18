@@ -1,14 +1,17 @@
+import React, { Component } from 'react';
 import './Navbar.css';
 
-function Navbar() {
-  return (
-    <div className="navContainer">
-    <ul className="navBar">
-        <li>Pick an Algorithm</li>
-        <li>Start Search!</li>
-    </ul>
-    </div>
-  );
+class Navbar extends Component {
+  render() {
+    return (
+      <div className="navContainer">
+      <ul className="navBar">
+          <li>Pick an Algorithm</li>
+          <li onClick={this.props.onClick}>Start Search!</li>
+      </ul>
+      </div>
+    );
+  }
 }
 
 export default Navbar;

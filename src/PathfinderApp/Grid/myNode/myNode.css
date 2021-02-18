@@ -4,3 +4,17 @@ td {  /* Default style for all node elements */
     width: 23px;
 }
 
+.visited {
+    background-color: rgb(15, 151, 163);
+}
+
+.start {
+    background-color: rgb(231, 153, 28);
+}
+
+.end {
+    background-color: rgb(136, 77, 21);
+}
+
+
+

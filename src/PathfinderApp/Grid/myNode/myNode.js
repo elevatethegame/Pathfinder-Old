@@ -2,7 +2,7 @@ import './MyNode.css';
 
 function MyNode(props) {
   return (
-    <td></td>
+    <td className={props.nodeType}></td>
   );
 }
 
