@@ -1,4 +1,6 @@
 td {  /* Default style for all node elements */
-    border: 5px solid rgb(14, 184, 214)
+    border: 1px solid rgb(151, 206, 243);
+    height: 23px;
+    width: 23px;
 }
 

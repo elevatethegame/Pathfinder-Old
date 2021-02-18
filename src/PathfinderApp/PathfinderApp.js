@@ -6,12 +6,9 @@ import './PathfinderApp.css';
 class PathfinderApp extends Component {
   constructor(props) {
     super(props);
-    let rows = [];
+    let rows = Array(0);
     for (let i = 0; i < 30; i++) {
-      let nodes = [];
-      for (let j = 0; j < 50; j++) {
-        nodes.push({});
-      }
+      let nodes = Array(70).fill({});
       rows.push({nodes: nodes})
     }
     this.state = {

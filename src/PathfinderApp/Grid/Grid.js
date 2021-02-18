@@ -1,11 +1,11 @@
 import './Grid.css';
-import myNode from './myNode/myNode';
+import MyNode from './MyNode/MyNode';
 
 function Grid(props) {
   const { rows } = props
   const rowsLst = rows.map((row, index) => {
     const nodesLst = row.nodes.map((node, index) => {
-      return <myNode key={index}></myNode>
+      return <MyNode key={index}></MyNode>
     });
     return (
         <tr key={index}>{ nodesLst }</tr>
@@ -14,7 +14,9 @@ function Grid(props) {
 
   return (
     <table>
-      { rowsLst }
+      <tbody>
+        { rowsLst }
+      </tbody>
     </table>
   );
 }

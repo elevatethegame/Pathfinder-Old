@@ -1,9 +1,9 @@
-import './myNode.css';
+import './MyNode.css';
 
-function myNode(props) {
+function MyNode(props) {
   return (
     <td></td>
   );
 }
 
-export default myNode;
+export default MyNode;
