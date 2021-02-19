@@ -11,7 +11,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     let rows = Array(0);
     for (let i = 0; i < 30; i++) {  // Initialize a grid of 30 rows
       let nodes = Array(70).fill(null).map((node) => {  // Each row will contain 70 nodes
-        return {isVisited: false, isStartNode: false, isEndNode: false, isWallNode: false};  // node's properties (state)
+        return {isVisited: false, isStartNode: false, isEndNode: false, isWallNode: false, isOnPath: false};  // node's properties (state)
         }  
       );  
       rows.push(nodes);
@@ -29,7 +29,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
 
   // Set the node with coordinate (i, j) to be visited
   handleVisited = (i, j) => {
-    console.log("Handle visit of ", i, j);
+    // console.log("Handle visit of ", i, j);
     const rows = this.state.rows.slice();
     rows[i][j].isVisited = true;
     this.setState({
@@ -37,10 +37,23 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     })
   }
 
+  // Set the node with coordinate (i, j) to be onpath
+  handleOnPath = (i, j) => {
+    // console.log("Handle visit of ", i, j);
+    const rows = this.state.rows.slice();
+    rows[i][j].isOnPath = true;
+    this.setState({
+      rows: rows
+    })
+  }
+
   runAlgorithm = () => {
     console.log("Running A* Algorithm");
-    const pathLst = 
-        runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows.length - 1, this.state.rows[0].length - 1, this.handleVisited);
+    const { pathLst, visitedLst } = 
+        runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows.length - 1, this.state.rows[0].length - 1);
+    visitedLst.forEach((coord) => this.handleVisited(...coord));
+    console.log(pathLst);
+    pathLst.forEach((coord) => this.handleOnPath(...coord));
   }
 
   render() {

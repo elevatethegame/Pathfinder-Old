@@ -30,26 +30,27 @@ function getNeighbours(node, end_i, end_j, max_i, max_j) {
 function getPathList(node) {
     if (node) {
         const pathLst = getPathList(node.parent);
-        pathLst.add(node);
+        pathLst.add([node.i, node.j]);
         return pathLst;
     }
     return Array(0);
 }
 
-const runAStar = function(start_i, start_j, end_i, end_j, max_i, max_j, handleVisited) {
+const runAStar = function(start_i, start_j, end_i, end_j, max_i, max_j) {
     const startNode = new Node(start_i, start_j, 0, getManhattanDist(start_i, start_j, end_i, end_j), null);  // i, j, g, h, parent
     const heap = new Heap([startNode], null, (node1, node2) => node2.f - node1.f);
     const visited = new Set();
+    const visitedLst = Array(0);  // list of [i, j] coordinates representing the order of visited nodes from the first to the last
     while (heap.length > 0) {
         const currNode = heap.pop();
-        handleVisited(currNode.i, currNode.j);
         visited.add([currNode.i, currNode.j].toString());
-        console.log(visited);
+        visitedLst.push([currNode.i, currNode.j]);
+        // console.log(visited);
         const neighbours = getNeighbours(currNode, end_i, end_j, max_i, max_j);
         for (let i = 0; i < neighbours.length; i++) {
             const neighbour = neighbours[i];
             if (neighbour.i === end_i && neighbour.j === end_j)  // neighbour is the goal node, terminate
-                return getPathList(neighbour);
+                return {pathLst: getPathList(neighbour), visitedLst: visitedLst};
             if (!visited.has([neighbour.i, neighbour.j].toString()))  // if neighbour has not been visited before, add to heap
                 heap.add(neighbour);
         }

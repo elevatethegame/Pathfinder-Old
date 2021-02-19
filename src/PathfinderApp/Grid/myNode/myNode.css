@@ -16,5 +16,9 @@ td {  /* Default style for all node elements */
     background-color: rgb(136, 77, 21);
 }
 
+.onpath {
+    background-color: rgb(138, 31, 165);
+}
+
 
 

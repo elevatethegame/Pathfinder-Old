@@ -9,6 +9,8 @@ function Grid(props) {
         return <MyNode nodeType="start" key={nodeIndex}></MyNode>
       } else if (node.isEndNode) {
         return <MyNode nodeType="end" key={nodeIndex}></MyNode>
+      } else if (node.isOnPath) {
+        return <MyNode nodeType="onpath" key={nodeIndex}></MyNode>
       } else if (node.isVisited) {
         return <MyNode nodeType="visited" key={nodeIndex}></MyNode>
       } else {
