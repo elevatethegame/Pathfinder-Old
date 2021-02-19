@@ -3,7 +3,7 @@ import Heap from 'collections/heap'
 
 // Heuristic used by the A-Star Algorithm
 function getManhattanDist(ai, aj, bi, bj) {
-    return Math.abs(ai - bi) + Math.abs(bi - bj);
+    return Math.abs(ai - bi) + Math.abs(aj - bj);
 }
 
 // Get all neighbours of a node 
@@ -37,11 +37,14 @@ function getPathList(node) {
 }
 
 const runAStar = function(start_i, start_j, end_i, end_j, max_i, max_j, handleVisited) {
-    const startNode = new Node(start_i, start_j, 0, getManhattanDist(start_i, start_j, end_i, end_j), null);
+    const startNode = new Node(start_i, start_j, 0, getManhattanDist(start_i, start_j, end_i, end_j), null);  // i, j, g, h, parent
     const heap = new Heap([startNode], null, (node1, node2) => node2.f - node1.f);
     const visited = new Set();
     while (heap.length > 0) {
         const currNode = heap.pop();
+        handleVisited(currNode.i, currNode.j);
+        visited.add([currNode.i, currNode.j].toString());
+        console.log(visited);
         const neighbours = getNeighbours(currNode, end_i, end_j, max_i, max_j);
         for (let i = 0; i < neighbours.length; i++) {
             const neighbour = neighbours[i];
@@ -50,8 +53,6 @@ const runAStar = function(start_i, start_j, end_i, end_j, max_i, max_j, handleVi
             if (!visited.has([neighbour.i, neighbour.j].toString()))  // if neighbour has not been visited before, add to heap
                 heap.add(neighbour);
         }
-        handleVisited(currNode.i, currNode.j);
-        visited.add([currNode.i, currNode.j].toString());
     }
     // If the code reaches here, no path was found
     return null;

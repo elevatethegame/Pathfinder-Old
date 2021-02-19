@@ -28,7 +28,8 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
   }
 
   // Set the node with coordinate (i, j) to be visited
-  handleVisited(i, j) {
+  handleVisited = (i, j) => {
+    console.log("Handle visit of ", i, j);
     const rows = this.state.rows.slice();
     rows[i][j].isVisited = true;
     this.setState({
@@ -36,7 +37,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     })
   }
 
-  runAlgorithm() {
+  runAlgorithm = () => {
     console.log("Running A* Algorithm");
     const pathLst = 
         runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows.length - 1, this.state.rows[0].length - 1, this.handleVisited);
