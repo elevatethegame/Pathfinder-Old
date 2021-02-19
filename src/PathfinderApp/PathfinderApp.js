@@ -10,8 +10,9 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     super(props);
     let rows = Array(0);
     for (let i = 0; i < 30; i++) {  // Initialize a grid of 30 rows
-      let nodes = Array(70).fill(  // Each row will contain 70 nodes
-        {isVisited: false, isStartNode: false, isEndNode: false, isWallNode: false}  // node's properties (state)
+      let nodes = Array(70).fill(null).map((node) => {  // Each row will contain 70 nodes
+        return {isVisited: false, isStartNode: false, isEndNode: false, isWallNode: false};  // node's properties (state)
+        }  
       );  
       rows.push(nodes);
     }
