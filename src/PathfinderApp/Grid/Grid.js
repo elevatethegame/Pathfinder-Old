@@ -13,7 +13,7 @@ function Grid(props) {
             isVisitedNode={true} pathLst={props.pathLst} animatePath={props.animatePath}></MyNode>
         }
         return <MyNode className="end" key={nodeIndex} isEndNode={true} 
-            isVisitedNode={false} pathLst={props.pathLst} animatePath={props.animatePath}></MyNode>
+            isVisitedNode={false} ></MyNode>
       } else if (node.isWallNode) {
         return <MyNode className="wall" key={nodeIndex} isEndNode={false}></MyNode>
       } else if (node.isOnPath) {

@@ -50,7 +50,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
       rows[i][j].isVisitedNode = true;
     })
     this.setState({
-      rows: rows
+      rows: rows,
     });
   }
 
@@ -59,12 +59,13 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     this.clearPath();
     const { pathLst, visitedLst } = 
         runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
-    this.setState({
-      pathLst: pathLst
-    });
     // set the delay factor of the animation, each succeeding node has 'stagger' millisecond more animation delay than preceding node  
     const stagger = 20;
-    this.setVisited(visitedLst, stagger);
+    console.log(pathLst);
+    this.setState({
+      pathLst: pathLst
+    }, () => this.setVisited(visitedLst, stagger));
+    console.log(this.state.pathLst);
   }
 
   // Reset state of every node to default values except for isStartNode, isEndNode and isWallNode properties
@@ -122,7 +123,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     return (
       <div>
         <Navbar onClickSearch={this.startSearch} onClickGenWalls={this.generateWalls} />
-        <Grid rows={this.state.rows} pathLst={this.pathLst} animatePath={this.setOnPath} />
+        <Grid rows={this.state.rows} pathLst={this.state.pathLst} animatePath={this.setOnPath} />
       </div>
     );
   }

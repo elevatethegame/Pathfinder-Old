@@ -25,11 +25,12 @@ td {  /* Default style for all node elements */
 }
 
 .end {
-    background-color: rgb(136, 77, 21);
+    background-color: rgb(73, 133, 46);
 }
 
 .end-visited {
-    background-color: rgb(94, 54, 16);
+    background-color: rgb(73, 133, 46);
+    animation-name: endVisitedAnimation;
 }
 
 .onpath {
@@ -65,6 +66,11 @@ td {  /* Default style for all node elements */
     0% {transform: scale(0.3);}
     75% {transform: scale(1.2);}
     100% {transform: scale(1.0);}
+}
+
+@keyframes endVisitedAnimation {
+    0% {background-color: rgb(73, 133, 46)}
+    100% {background-color: rgb(32, 83, 48);}
 }
 
 
