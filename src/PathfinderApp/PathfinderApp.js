@@ -11,7 +11,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     let rows = Array(0);
     for (let i = 0; i < 30; i++) {  // Initialize a grid of 30 rows
       let nodes = Array(70).fill(null).map((node) => {  // Each row will contain 70 nodes
-        return {isVisited: false, isStartNode: false, isEndNode: false, isWallNode: false, isOnPath: false};  // node's properties (state)
+        return {isVisitedNode: false, isStartNode: false, isEndNode: false, isWallNode: false, isOnPath: false};  // node's properties (state)
         }  
       );  
       rows.push(nodes);
@@ -28,17 +28,17 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
   }
 
   // Set the node with coordinate (i, j) to be visited
-  handleVisited = (i, j) => {
+  setVisited = (i, j) => {
     // console.log("Handle visit of ", i, j);
     const rows = this.state.rows.slice();
-    rows[i][j].isVisited = true;
+    rows[i][j].isVisitedNode = true;
     this.setState({
       rows: rows
     })
   }
 
   // Set the node with coordinate (i, j) to be onpath
-  handleOnPath = (i, j) => {
+  setOnPath = (i, j) => {
     // console.log("Handle visit of ", i, j);
     const rows = this.state.rows.slice();
     rows[i][j].isOnPath = true;
@@ -49,21 +49,73 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
 
   startSearch = () => {
     console.log("Running A* Algorithm");
+    this.clearPath();
     const { pathLst, visitedLst } = 
-        runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows.length - 1, this.state.rows[0].length - 1);
+        runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows);
     visitedLst.forEach((coord) => {
-      setTimeout(() => this.handleVisited(...coord), 40);
+      setTimeout(() => this.setVisited(...coord), 40);
     });
     console.log(pathLst);
     pathLst.forEach((coord) => {
-      setTimeout(() => this.handleOnPath(...coord), 40);
+      setTimeout(() => this.setOnPath(...coord), 40);
     });
+  }
+
+  // Reset state of every node to default values except for isStartNode, isEndNode and isWallNode properties
+  clearPath = () => {
+    console.log("Clearing Board");
+    const rows = this.state.rows.slice();
+    rows.forEach((row) => {
+      row.forEach((node) => {
+        node.isVisitedNode = false;
+        node.isOnPath = false;
+      });
+    });
+    this.setState({
+      rows: rows
+    })
+  }
+
+  // Reset state of every node to default values
+  clearBoard = () => {
+    console.log("Clearing Board");
+    const rows = this.state.rows.slice();
+    rows.forEach((row) => {
+      row.forEach((node) => {
+        node.isWallNode = false;
+        node.isVisitedNode = false;
+        node.isOnPath = false;
+      });
+    });
+    this.setState({
+      rows: rows
+    })
+  }
+
+  probability = (p) => {  // Returns true if success occurred for event with probability of success p
+    return Math.random() <= p;
+  }
+
+  generateWalls = () => {
+    this.clearBoard();
+    console.log("Generating Walls");
+    const rows = this.state.rows.slice();
+    rows.forEach((row) => {
+      row.forEach((node) => {
+        if (this.probability(0.3)) {
+          node.isWallNode = true;
+        }
+      });
+    });
+    this.setState({
+      rows: rows
+    })
   }
 
   render() {
     return (
       <div>
-        <Navbar onClick={this.startSearch} />
+        <Navbar onClickSearch={this.startSearch} onClickGenWalls={this.generateWalls} />
         <Grid rows={this.state.rows} />
       </div>
     );

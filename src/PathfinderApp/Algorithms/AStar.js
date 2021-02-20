@@ -36,7 +36,7 @@ function getPathList(node) {
     return Array(0);
 }
 
-const runAStar = function(start_i, start_j, end_i, end_j, max_i, max_j) {
+const runAStar = function(start_i, start_j, end_i, end_j, rows) {
     const startNode = new Node(start_i, start_j, 0, getManhattanDist(start_i, start_j, end_i, end_j), null);  // i, j, g, h, parent
     const heap = new Heap([startNode], null, (node1, node2) => node2.f - node1.f);
     const visited = new Set();
@@ -45,13 +45,13 @@ const runAStar = function(start_i, start_j, end_i, end_j, max_i, max_j) {
         const currNode = heap.pop();
         visited.add([currNode.i, currNode.j].toString());
         visitedLst.push([currNode.i, currNode.j]);
-        // console.log(visited);
-        const neighbours = getNeighbours(currNode, end_i, end_j, max_i, max_j);
+        const neighbours = getNeighbours(currNode, end_i, end_j, rows.length - 1, rows[0].length - 1);
         for (let i = 0; i < neighbours.length; i++) {
             const neighbour = neighbours[i];
             if (neighbour.i === end_i && neighbour.j === end_j)  // neighbour is the goal node, terminate
                 return {pathLst: getPathList(neighbour), visitedLst: visitedLst};
-            if (!visited.has([neighbour.i, neighbour.j].toString()))  // if neighbour has not been visited before, add to heap
+            // if neighbour has not been visited before and neighbour is not a wall, add to heap
+            if (!visited.has([neighbour.i, neighbour.j].toString()) && !rows[neighbour.i][neighbour.j].isWallNode)
                 heap.add(neighbour);
         }
     }

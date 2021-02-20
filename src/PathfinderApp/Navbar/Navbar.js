@@ -7,7 +7,8 @@ class Navbar extends Component {
       <div className="navContainer">
       <ul className="navBar">
           <li>Pick an Algorithm</li>
-          <li onClick={this.props.onClick}>Start Search!</li>
+          <li onClick={this.props.onClickSearch}>Start Search!</li>
+          <li onClick={this.props.onClickGenWalls}>Generate Walls</li>
       </ul>
       </div>
     );

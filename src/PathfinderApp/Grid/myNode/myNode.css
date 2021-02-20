@@ -1,11 +1,16 @@
 td {  /* Default style for all node elements */
-    border: 1px solid rgb(151, 206, 243);
     height: 23px;
     width: 23px;
 }
 
+.unvisited {
+    background-color: none;
+    border: 1px solid rgb(151, 206, 243);
+}
+
 .visited {
     background-color: rgb(15, 151, 163);
+    border: 1px solid rgb(151, 206, 243);
     animation-name: visitedAnimation;
     animation-duration: 1.2s;
     animation-timing-function: ease-out;
@@ -30,6 +35,15 @@ td {  /* Default style for all node elements */
     will-change: background-color;
 }
 
+.wall {
+    background-color: rgb(20, 38, 46);
+    animation-name: wallAnimation;
+    animation-duration: 1.2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    will-change: transform;
+}
+
 @keyframes visitedAnimation {
     0% {background-color: white;}
     100% {background-color: rgb(15, 151, 163);}
@@ -38,6 +52,12 @@ td {  /* Default style for all node elements */
 @keyframes onPathAnimation {
     0% {background-color: rgb(15, 151, 163);}
     100% {background-color: rgb(138, 31, 165);}
+}
+
+@keyframes wallAnimation {
+    0% {transform: scale(0.3);}
+    75% {transform: scale(1.2);}
+    100% {transform: scale(1.0);}
 }
 
 
