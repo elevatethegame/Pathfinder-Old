@@ -6,6 +6,11 @@ td {  /* Default style for all node elements */
 
 .visited {
     background-color: rgb(15, 151, 163);
+    animation-name: visitedAnimation;
+    animation-duration: 1.2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    will-change: background-color;
 }
 
 .start {
@@ -18,6 +23,21 @@ td {  /* Default style for all node elements */
 
 .onpath {
     background-color: rgb(138, 31, 165);
+    animation-name: onPathAnimation;
+    animation-duration: 1.2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    will-change: background-color;
+}
+
+@keyframes visitedAnimation {
+    0% {background-color: white;}
+    100% {background-color: rgb(15, 151, 163);}
+}
+
+@keyframes onPathAnimation {
+    0% {background-color: rgb(15, 151, 163);}
+    100% {background-color: rgb(138, 31, 165);}
 }
 
 

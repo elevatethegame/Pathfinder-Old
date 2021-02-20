@@ -47,19 +47,23 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     })
   }
 
-  runAlgorithm = () => {
+  startSearch = () => {
     console.log("Running A* Algorithm");
     const { pathLst, visitedLst } = 
         runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows.length - 1, this.state.rows[0].length - 1);
-    visitedLst.forEach((coord) => this.handleVisited(...coord));
+    visitedLst.forEach((coord) => {
+      setTimeout(() => this.handleVisited(...coord), 40);
+    });
     console.log(pathLst);
-    pathLst.forEach((coord) => this.handleOnPath(...coord));
+    pathLst.forEach((coord) => {
+      setTimeout(() => this.handleOnPath(...coord), 40);
+    });
   }
 
   render() {
     return (
       <div>
-        <Navbar onClick={this.runAlgorithm} />
+        <Navbar onClick={this.startSearch} />
         <Grid rows={this.state.rows} />
       </div>
     );
