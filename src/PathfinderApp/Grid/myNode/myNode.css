@@ -9,7 +9,9 @@ td {  /* Default style for all node elements */
 }
 
 .visited {
-    background-color: rgb(15, 151, 163);
+    /* Since in this approach all nodes are set to visited at one go, 
+    the background-color of the node before the animation must be the same as unvisited's */
+    background-color: white;  
     border: 1px solid rgb(151, 206, 243);
     animation-name: visitedAnimation;
     animation-duration: 1.2s;
@@ -26,8 +28,13 @@ td {  /* Default style for all node elements */
     background-color: rgb(136, 77, 21);
 }
 
+.end-visited {
+    background-color: rgb(94, 54, 16);
+}
+
 .onpath {
-    background-color: rgb(138, 31, 165);
+    background-color: white;
+    /* background-color: rgb(15, 151, 163); */
     animation-name: onPathAnimation;
     animation-duration: 1.2s;
     animation-timing-function: ease-out;

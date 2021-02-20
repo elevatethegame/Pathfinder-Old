@@ -48,15 +48,17 @@ const runAStar = function(start_i, start_j, end_i, end_j, rows) {
         const neighbours = getNeighbours(currNode, end_i, end_j, rows.length - 1, rows[0].length - 1);
         for (let i = 0; i < neighbours.length; i++) {
             const neighbour = neighbours[i];
-            if (neighbour.i === end_i && neighbour.j === end_j)  // neighbour is the goal node, terminate
+            if (neighbour.i === end_i && neighbour.j === end_j) {  // neighbour is the goal node, terminate
+                visitedLst.push([neighbour.i, neighbour.j]);  // add neighbour to visited nodes
                 return {pathLst: getPathList(neighbour), visitedLst: visitedLst};
+            }
             // if neighbour has not been visited before and neighbour is not a wall, add to heap
             if (!visited.has([neighbour.i, neighbour.j].toString()) && !rows[neighbour.i][neighbour.j].isWallNode)
                 heap.add(neighbour);
         }
     }
     // If the code reaches here, no path was found
-    return null;
+    return {pathLst: null, visitedLst: null};
 }
 
 export default runAStar;

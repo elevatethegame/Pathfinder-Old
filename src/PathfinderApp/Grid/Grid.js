@@ -6,17 +6,22 @@ function Grid(props) {
   const rowsLst = rows.map((row, rowIndex) => {
     const nodesLst = row.map((node, nodeIndex) => {
       if (node.isStartNode) {
-        return <MyNode className="start" key={nodeIndex}></MyNode>
+        return <MyNode className="start" key={nodeIndex} isEndNode={false}></MyNode>
       } else if (node.isEndNode) {
-        return <MyNode className="end" key={nodeIndex}></MyNode>
+        if (node.isVisitedNode) {
+          return <MyNode className="end-visited" key={nodeIndex} isEndNode={true} 
+            isVisitedNode={true} pathLst={props.pathLst} animatePath={props.animatePath}></MyNode>
+        }
+        return <MyNode className="end" key={nodeIndex} isEndNode={true} 
+            isVisitedNode={false} pathLst={props.pathLst} animatePath={props.animatePath}></MyNode>
       } else if (node.isWallNode) {
-        return <MyNode className="wall" key={nodeIndex}></MyNode>
+        return <MyNode className="wall" key={nodeIndex} isEndNode={false}></MyNode>
       } else if (node.isOnPath) {
-        return <MyNode className="onpath" key={nodeIndex}></MyNode>
+        return <MyNode className="onpath" key={nodeIndex} delay={node.delay} isEndNode={false}></MyNode>
       } else if (node.isVisitedNode) {
-        return <MyNode className="visited" key={nodeIndex}></MyNode>
+        return <MyNode className="visited" key={nodeIndex} delay={node.delay} isEndNode={false}></MyNode>
       } else {
-        return <MyNode className="unvisited" key={nodeIndex}></MyNode>
+        return <MyNode className="unvisited" key={nodeIndex} isEndNode={false}></MyNode>
       }
     });
     return (

@@ -11,7 +11,8 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     let rows = Array(0);
     for (let i = 0; i < 30; i++) {  // Initialize a grid of 30 rows
       let nodes = Array(70).fill(null).map((node) => {  // Each row will contain 70 nodes
-        return {isVisitedNode: false, isStartNode: false, isEndNode: false, isWallNode: false, isOnPath: false};  // node's properties (state)
+        return {isVisitedNode: false, isStartNode: false, isEndNode: false, isWallNode: false, isOnPath: false, 
+          delay: 0};  // node's properties (state)
         }  
       );  
       rows.push(nodes);
@@ -23,42 +24,47 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     this.state = {
       rows: rows,
       startCoord: [15, 20],
-      endCoord: [15, 50]
+      endCoord: [15, 50],
+      pathLst: null
     }
   }
 
-  // Set the node with coordinate (i, j) to be visited
-  setVisited = (i, j) => {
-    // console.log("Handle visit of ", i, j);
+  // Set the nodes on the path with the right path order
+  setOnPath = (pathLst, stagger) => {
     const rows = this.state.rows.slice();
-    rows[i][j].isVisitedNode = true;
+    pathLst.forEach((coord, pathOrder) => {
+      const [i, j] = coord;
+      rows[i][j].delay = stagger * pathOrder;
+      rows[i][j].isOnPath = true;
+    })
     this.setState({
       rows: rows
     })
   }
 
-  // Set the node with coordinate (i, j) to be onpath
-  setOnPath = (i, j) => {
-    // console.log("Handle visit of ", i, j);
+  setVisited = (visitedLst, stagger) => {
     const rows = this.state.rows.slice();
-    rows[i][j].isOnPath = true;
+    visitedLst.forEach((coord, visitedOrder) => {
+      const [i, j] = coord;
+      rows[i][j].delay = stagger * visitedOrder;
+      rows[i][j].isVisitedNode = true;
+    })
     this.setState({
       rows: rows
-    })
+    });
   }
 
   startSearch = () => {
     console.log("Running A* Algorithm");
     this.clearPath();
     const { pathLst, visitedLst } = 
-        runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows);
-    visitedLst.forEach((coord) => {
-      setTimeout(() => this.setVisited(...coord), 40);
+        runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
+    this.setState({
+      pathLst: pathLst
     });
-    console.log(pathLst);
-    pathLst.forEach((coord) => {
-      setTimeout(() => this.setOnPath(...coord), 40);
-    });
+    // set the delay factor of the animation, each succeeding node has 'stagger' millisecond more animation delay than preceding node  
+    const stagger = 20;
+    this.setVisited(visitedLst, stagger);
   }
 
   // Reset state of every node to default values except for isStartNode, isEndNode and isWallNode properties
@@ -116,7 +122,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     return (
       <div>
         <Navbar onClickSearch={this.startSearch} onClickGenWalls={this.generateWalls} />
-        <Grid rows={this.state.rows} />
+        <Grid rows={this.state.rows} pathLst={this.pathLst} animatePath={this.setOnPath} />
       </div>
     );
   }
