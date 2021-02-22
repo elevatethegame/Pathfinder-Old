@@ -10,40 +10,40 @@ td {  /* Default style for all node elements */
 
 .visited {
     /* Since in this approach all nodes are set to visited at one go, 
-    the background-color of the node before the animation must be the same as unvisited's */
-    background-color: white;  
+    the background-color of the node before the animation must be the same as unvisited's */  
+    background-color: rgb(15, 151, 163);
     border: 1px solid rgb(151, 206, 243);
     animation-name: visitedAnimation;
     animation-duration: 1.2s;
     animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
+    animation-fill-mode: both;
     will-change: background-color;
 }
 
 .start {
-    background-color: rgb(231, 153, 28);
+    background-color: rgb(231, 133, 41);
 }
 
 .end {
-    background-color: rgb(73, 133, 46);
+    background-color: rgb(165, 93, 184);
 }
 
 .end-visited {
-    background-color: rgb(73, 133, 46);
+    background-color: rgb(88, 71, 185);
     animation-name: endVisitedAnimation;
     animation-duration: 1.2s;
     animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
+    animation-fill-mode: both;
     will-change: background-color;
 }
 
 .onpath {
-    background-color: white;
+    background-color: rgb(194, 67, 162);
     /* background-color: rgb(15, 151, 163); */
     animation-name: onPathAnimation;
     animation-duration: 1.2s;
     animation-timing-function: ease-out;
-    animation-fill-mode: forwards;
+    animation-fill-mode: both;
     will-change: background-color;
 }
 
@@ -63,7 +63,7 @@ td {  /* Default style for all node elements */
 
 @keyframes onPathAnimation {
     0% {background-color: rgb(15, 151, 163);}
-    100% {background-color: rgb(138, 31, 165);}
+    100% {background-color: rgb(194, 67, 162);}
 }
 
 @keyframes wallAnimation {
@@ -73,8 +73,8 @@ td {  /* Default style for all node elements */
 }
 
 @keyframes endVisitedAnimation {
-    0% {background-color: rgb(73, 133, 46)}
-    100% {background-color: rgb(32, 83, 48);}
+    0% {background-color: rgb(165, 93, 184)}
+    100% {background-color: rgb(88, 71, 185)}
 }
 
 
