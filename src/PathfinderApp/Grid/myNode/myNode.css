@@ -31,6 +31,10 @@ td {  /* Default style for all node elements */
 .end-visited {
     background-color: rgb(73, 133, 46);
     animation-name: endVisitedAnimation;
+    animation-duration: 1.2s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    will-change: background-color;
 }
 
 .onpath {

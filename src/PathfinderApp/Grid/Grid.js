@@ -9,11 +9,10 @@ function Grid(props) {
         return <MyNode className="start" key={nodeIndex} isEndNode={false}></MyNode>
       } else if (node.isEndNode) {
         if (node.isVisitedNode) {
-          return <MyNode className="end-visited" key={nodeIndex} isEndNode={true} 
-            isVisitedNode={true} pathLst={props.pathLst} animatePath={props.animatePath}></MyNode>
+          return <MyNode className="end-visited" key={nodeIndex} delay={node.delay} isEndNode={true} 
+              pathLst={props.pathLst} animatePath={props.animatePath}></MyNode>
         }
-        return <MyNode className="end" key={nodeIndex} isEndNode={true} 
-            isVisitedNode={false} ></MyNode>
+        return <MyNode className="end" key={nodeIndex} isEndNode={true}></MyNode>
       } else if (node.isWallNode) {
         return <MyNode className="wall" key={nodeIndex} isEndNode={false}></MyNode>
       } else if (node.isOnPath) {

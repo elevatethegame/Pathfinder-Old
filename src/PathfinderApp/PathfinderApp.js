@@ -48,7 +48,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
       const [i, j] = coord;
       rows[i][j].delay = stagger * visitedOrder;
       rows[i][j].isVisitedNode = true;
-    })
+    });
     this.setState({
       rows: rows,
     });

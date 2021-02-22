@@ -6,7 +6,7 @@ function MyNode(props) {
         style={{animationDelay: `${props.delay}ms`}}
         onAnimationEnd={() => {
           // Once the end node has been visited, trigger search animation
-          if (props.isEndNode && props.isVisitedNode) {
+          if (props.isEndNode) {
             console.log("On Animation End");
             props.animatePath(props.pathLst, 20);
           }
