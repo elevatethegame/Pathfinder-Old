@@ -57,13 +57,19 @@ td {  /* Default style for all node elements */
 }
 
 @keyframes visitedAnimation {
-    0% {background-color: white;}
-    100% {background-color: rgb(15, 151, 163);}
+    0% {background-color: white; transform: scale(0.3); border-radius: 100%}
+    25% {background-color: rgb(72, 195, 138)}
+    50% {background-color: rgb(48, 204, 191)}
+    75% {transform: scale(1.2)};
+    100% {background-color: rgb(15, 151, 163); transform: scale(1.0);}
 }
 
 @keyframes onPathAnimation {
     0% {background-color: rgb(15, 151, 163);}
-    100% {background-color: rgb(194, 67, 162);}
+    25% {background-color: rgb(46, 112, 187);}
+    50% {background-color: rgb(114, 60, 202)}
+    75% {transform: scale(1.2)};
+    100% {background-color: rgb(194, 67, 162); transform: scale(1.0);}
 }
 
 @keyframes wallAnimation {
@@ -73,8 +79,9 @@ td {  /* Default style for all node elements */
 }
 
 @keyframes endVisitedAnimation {
-    0% {background-color: rgb(165, 93, 184)}
-    100% {background-color: rgb(88, 71, 185)}
+    0% {background-color: rgb(165, 93, 184);}
+    75% {transform: scale(1.2);}
+    100% {background-color: rgb(88, 71, 185); transform: scale(1.0);}
 }
 
 
