@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Navbar from './Navbar/Navbar';
 import Grid from './Grid/Grid';
 import runAStar from './Algorithms/AStar';
+import runBFS from './Algorithms/BFS';
+import runDFS from './Algorithms/DFS';
 import './PathfinderApp.css';
 
 class PathfinderApp extends Component {  // PathfinderApp is the only stateful component of our application
@@ -58,7 +60,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     console.log("Running A* Algorithm");
     this.clearPath();
     const { pathLst, visitedLst } = 
-        runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
+        runBFS(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
     // set the delay factor of the animation, each succeeding node has 'stagger' millisecond more animation delay than preceding node  
     const stagger = 20;
     console.log(pathLst);
