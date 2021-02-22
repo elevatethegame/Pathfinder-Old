@@ -29,7 +29,7 @@ td {  /* Default style for all node elements */
 }
 
 .end-visited {
-    background-color: rgb(88, 71, 185);
+    background-color: rgb(78, 64, 155);
     animation-name: endVisitedAnimation;
     animation-duration: 1.2s;
     animation-timing-function: ease-out;
@@ -81,7 +81,7 @@ td {  /* Default style for all node elements */
 @keyframes endVisitedAnimation {
     0% {background-color: rgb(165, 93, 184);}
     75% {transform: scale(1.2);}
-    100% {background-color: rgb(88, 71, 185); transform: scale(1.0);}
+    100% {background-color: rgb(78, 64, 155); transform: scale(1.0);}
 }
 
 

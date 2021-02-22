@@ -58,7 +58,7 @@ const runAStar = function(start_i, start_j, end_i, end_j, rows) {
         }
     }
     // If the code reaches here, no path was found
-    return {pathLst: null, visitedLst: null};
+    return {pathLst: [], visitedLst: visitedLst};
 }
 
 export default runAStar;
