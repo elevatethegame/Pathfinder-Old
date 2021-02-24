@@ -61,12 +61,16 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     console.log("Clearing Board");
     this.setState({ 
       rows: this.getClearedPathState()
-    }, () => {
+    }, async () => {
       console.log(this.state.rows);
       const { pathLst, visitedLst } = 
           runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
       // set the delay factor of the animation, each succeeding node has 
-      // 'stagger' millisecond more animation delay than preceding node  
+      // 'stagger' millisecond more animation delay than preceding node
+      const sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds));
+      };
+      await sleep(100);
       const stagger = 20;
       console.log(pathLst);
       this.setState({
