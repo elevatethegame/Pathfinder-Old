@@ -60,7 +60,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     console.log("Running A* Algorithm");
     this.clearPath();
     const { pathLst, visitedLst } = 
-        runBFS(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
+        runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
     // set the delay factor of the animation, each succeeding node has 'stagger' millisecond more animation delay than preceding node  
     const stagger = 20;
     console.log(pathLst);
