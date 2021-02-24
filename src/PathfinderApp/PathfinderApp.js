@@ -21,12 +21,13 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     }
 
     rows[15][20].isStartNode = true;  // Initialize a default start node
-    rows[15][50].isEndNode = true;  // Initialize a default end node
+    // rows[15][50].isEndNode = true;  // Initialize a default end node
+    rows[15][27].isEndNode = true;  // Initialize a default end node
 
     this.state = {
       rows: rows,
       startCoord: [15, 20],
-      endCoord: [15, 50],
+      endCoord: [15, 27],
       pathLst: null
     }
   }
@@ -71,7 +72,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
         return new Promise(resolve => setTimeout(resolve, milliseconds));
       };
       await sleep(100);
-      const stagger = 20;
+      const stagger = 100;
       console.log(pathLst);
       this.setState({
         pathLst: pathLst
@@ -98,16 +99,66 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     const probability = (p) => { return Math.random() <= p; };
     rows.forEach((row) => {
       row.forEach((node) => {
-        if (probability(0.3)) {
-          node.isWallNode = true;
-        } else {
-          node.isWallNode = false;
-        }
+        // if (probability(0.3)) {
+        //   node.isWallNode = true;
+        // } else {
+        //   node.isWallNode = false;
+        // }
+        node.isWallNode = false;  // temporary
         node.isVisitedNode = false;
         node.isOnPath = false;
         node.delay = 0;
       });
     });
+
+    // Temporary code to create GIF ===========================================================================
+    // The below 2 for loops are temporary boundary to contain the start and end node. Required to create a GIF.
+    for (let i = 10; i <= 20; i++) {
+      rows[i][17].isWallNode = true;
+      rows[i][30].isWallNode = true;
+    }
+    for (let j = 17; j <= 30; j++) {
+      rows[10][j].isWallNode = true;
+      rows[20][j].isWallNode = true;
+    }
+    rows[14][18].isWallNode = true;
+    rows[17][18].isWallNode = true;
+    rows[19][18].isWallNode = true;
+    rows[12][19].isWallNode = true;
+    // rows[15][19].isWallNode = true;
+    // rows[16][19].isWallNode = true;
+    rows[18][19].isWallNode = true;
+    rows[16][20].isWallNode = true;
+    rows[19][20].isWallNode = true;
+    rows[19][21].isWallNode = true;
+    rows[18][21].isWallNode = true;
+    rows[16][21].isWallNode = true;
+    rows[15][21].isWallNode = true;
+    rows[14][21].isWallNode = true;
+    rows[12][21].isWallNode = true;
+    rows[13][22].isWallNode = true;
+    rows[13][23].isWallNode = true;
+    rows[19][23].isWallNode = true;
+    rows[17][24].isWallNode = true;
+    rows[16][24].isWallNode = true;
+    rows[16][25].isWallNode = true;
+    rows[14][25].isWallNode = true;
+    rows[11][25].isWallNode = true;
+    rows[17][26].isWallNode = true;
+    rows[15][26].isWallNode = true;
+    // rows[13][26].isWallNode = true;
+    rows[17][27].isWallNode = true;
+    rows[12][27].isWallNode = true;
+    rows[11][27].isWallNode = true;
+    rows[19][28].isWallNode = true;
+    rows[18][28].isWallNode = true;
+    rows[15][28].isWallNode = true;
+    rows[13][28].isWallNode = true;
+    rows[11][28].isWallNode = true;
+    rows[17][29].isWallNode = true;
+    rows[13][29].isWallNode = true;
+    // Temporary code to create GIF ===========================================================================
+
     this.setState({
       rows: rows
     })
@@ -118,6 +169,18 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
       <div>
         <Navbar onClickSearch={this.startSearch} onClickGenWalls={this.generateWalls} />
         <Grid rows={this.state.rows} pathLst={this.state.pathLst} animatePath={this.setOnPath} />
+        <div className="pop-up-container">
+          <div className="pop-up">
+            <h1>A Star Algorithm</h1>
+            <div><img src="/public/images/BFS.gif" alt="AStar gif" /></div>
+            <p>
+              The A Star Algorithm is a "smart" algorithm that chooses to explore nodes based on
+              the actual cost required to travel to the node and how near that node appears to be to the goal.
+              How near the node appears to be to the goal is estimated by a heuristic function, in this case
+              we use the Manhattan Distance between the node and the goal.
+            </p>
+          </div>
+        </div>
       </div>
     );
   }

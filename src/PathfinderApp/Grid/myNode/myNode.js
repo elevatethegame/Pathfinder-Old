@@ -8,7 +8,7 @@ function MyNode(props) {
           // Once the end node has been visited, trigger the path animation
           if (props.isEndNode) {
             console.log("On Animation End");
-            props.animatePath(props.pathLst, 40);
+            props.animatePath(props.pathLst, 80);
           }
         }}
     ></td>
