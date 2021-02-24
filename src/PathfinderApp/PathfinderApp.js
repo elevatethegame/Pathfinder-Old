@@ -58,62 +58,50 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
 
   startSearch = () => {
     console.log("Running A* Algorithm");
-    this.clearPath();
-    const { pathLst, visitedLst } = 
-        runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
-    // set the delay factor of the animation, each succeeding node has 'stagger' millisecond more animation delay than preceding node  
-    const stagger = 20;
-    console.log(pathLst);
-    this.setState({
-      pathLst: pathLst
-    }, () => this.setVisited(visitedLst, stagger));
-    console.log(this.state.pathLst);
+    console.log("Clearing Board");
+    this.setState({ 
+      rows: this.getClearedPathState()
+    }, () => {
+      console.log(this.state.rows);
+      const { pathLst, visitedLst } = 
+          runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
+      // set the delay factor of the animation, each succeeding node has 
+      // 'stagger' millisecond more animation delay than preceding node  
+      const stagger = 20;
+      console.log(pathLst);
+      this.setState({
+        pathLst: pathLst
+      }, () => this.setVisited(visitedLst, stagger));
+    })
   }
 
   // Reset state of every node to default values except for isStartNode, isEndNode and isWallNode properties
-  clearPath = () => {
-    console.log("Clearing Board");
+  getClearedPathState = () => {
     const rows = this.state.rows.slice();
     rows.forEach((row) => {
       row.forEach((node) => {
         node.isVisitedNode = false;
         node.isOnPath = false;
+        node.delay = 0;
       });
     });
-    this.setState({
-      rows: rows
-    })
-  }
-
-  // Reset state of every node to default values
-  clearBoard = () => {
-    console.log("Clearing Board");
-    const rows = this.state.rows.slice();
-    rows.forEach((row) => {
-      row.forEach((node) => {
-        node.isWallNode = false;
-        node.isVisitedNode = false;
-        node.isOnPath = false;
-      });
-    });
-    this.setState({
-      rows: rows
-    })
-  }
-
-  probability = (p) => {  // Returns true if success occurred for event with probability of success p
-    return Math.random() <= p;
+    return rows;
   }
 
   generateWalls = () => {
-    this.clearBoard();
     console.log("Generating Walls");
     const rows = this.state.rows.slice();
+    const probability = (p) => { return Math.random() <= p; };
     rows.forEach((row) => {
       row.forEach((node) => {
-        if (this.probability(0.3)) {
+        if (probability(0.3)) {
           node.isWallNode = true;
+        } else {
+          node.isWallNode = false;
         }
+        node.isVisitedNode = false;
+        node.isOnPath = false;
+        node.delay = 0;
       });
     });
     this.setState({
