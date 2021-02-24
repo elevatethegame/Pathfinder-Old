@@ -43,8 +43,10 @@ const runAStar = function(start_i, start_j, end_i, end_j, rows) {
     const visitedLst = Array(0);  // list of [i, j] coordinates representing the order of visited nodes from the first to the last
     while (heap.length > 0) {
         const currNode = heap.pop();
-        visited.add([currNode.i, currNode.j].toString());
-        visitedLst.push([currNode.i, currNode.j]);
+        if (!visited.has([currNode.i, currNode.j].toString())) {  // Only push to list of visited nodes if is not a duplicate
+            visited.add([currNode.i, currNode.j].toString());
+            visitedLst.push([currNode.i, currNode.j]);
+        }
         const neighbours = getNeighbours(currNode, end_i, end_j, rows.length - 1, rows[0].length - 1);
         for (let i = 0; i < neighbours.length; i++) {
             const neighbour = neighbours[i];
