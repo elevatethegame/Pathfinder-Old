@@ -9,8 +9,6 @@ td {  /* Default style for all node elements */
 }
 
 .visited {
-    /* Since in this approach all nodes are set to visited at one go, 
-    the background-color of the node before the animation must be the same as unvisited's */  
     background-color: rgb(15, 151, 163);
     border: 1px solid rgb(151, 206, 243);
     animation-name: visitedAnimation;
@@ -39,7 +37,6 @@ td {  /* Default style for all node elements */
 
 .onpath {
     background-color: rgb(194, 67, 162);
-    /* background-color: rgb(15, 151, 163); */
     animation-name: onPathAnimation;
     animation-duration: 1.2s;
     animation-timing-function: ease-out;
@@ -65,11 +62,11 @@ td {  /* Default style for all node elements */
 }
 
 @keyframes onPathAnimation {
-    0% {background-color: rgb(15, 151, 163);}
+    0% {background-color: rgb(15, 151, 163); border: 1px solid rgb(151, 206, 243);}
     25% {background-color: rgb(46, 112, 187);}
     50% {background-color: rgb(114, 60, 202)}
     75% {transform: scale(1.2)};
-    100% {background-color: rgb(194, 67, 162); transform: scale(1.0);}
+    100% {background-color: rgb(194, 67, 162); transform: scale(1.0); border: none}
 }
 
 @keyframes wallAnimation {
