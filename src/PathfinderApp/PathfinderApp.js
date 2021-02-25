@@ -5,6 +5,7 @@ import runAStar from './Algorithms/AStar';
 import runBFS from './Algorithms/BFS';
 import runDFS from './Algorithms/DFS';
 import './PathfinderApp.css';
+import AStarGIF from './images/AStar.gif';
 
 class PathfinderApp extends Component {  // PathfinderApp is the only stateful component of our application
 
@@ -57,15 +58,16 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     });
   }
 
-  startSearch = () => {
-    console.log("Running A* Algorithm");
+  // Run the search with the algorithm passed as argument
+  startSearch = (searchAlgorithm) => {  
+    console.log("Running Search Algorithm");
     console.log("Clearing Board");
     this.setState({ 
       rows: this.getClearedPathState()
     }, async () => {
       console.log(this.state.rows);
       const { pathLst, visitedLst } = 
-          runAStar(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
+          searchAlgorithm(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
       // set the delay factor of the animation, each succeeding node has 
       // 'stagger' millisecond more animation delay than preceding node
       const sleep = (milliseconds) => {
@@ -172,12 +174,14 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
         <div className="pop-up-container">
           <div className="pop-up">
             <h1>A Star Algorithm</h1>
-            <div><img src="/public/images/BFS.gif" alt="AStar gif" /></div>
+            <div><img src={AStarGIF} alt="AStar gif" /></div>
             <p>
-              The A Star Algorithm is a "smart" algorithm that chooses to explore nodes based on
+              The A Star Algorithm is a "smart" algorithm that chooses to explore nodes based on a sum total of
               the actual cost required to travel to the node and how near that node appears to be to the goal.
-              How near the node appears to be to the goal is estimated by a heuristic function, in this case
-              we use the Manhattan Distance between the node and the goal.
+            </p>
+            <p>
+              Nodes with lower sum totals are explored first. How near the node appears to be to the goal is estimated by a heuristic function, 
+              in this case we use the Manhattan Distance between the node and the goal.
             </p>
           </div>
         </div>
