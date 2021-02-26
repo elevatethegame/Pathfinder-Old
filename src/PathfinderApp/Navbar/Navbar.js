@@ -13,9 +13,9 @@ class Navbar extends Component {
     return (
       <div className="navContainer">
       <ul className="navBar">
-          <li>Pick an Algorithm</li>
-          <li onClick={() => this.props.onClickSearch(this.state.selectedAlgorithm)}>Start Search!</li>
-          <li onClick={this.props.onClickGenWalls}>Generate Walls</li>
+          <li className="navItem"><span>Pick an Algorithm</span></li>
+          <li className="navItem" onClick={() => this.props.onClickSearch(this.state.selectedAlgorithm)}>Start Search!</li>
+          <li className="navItem" onClick={this.props.onClickGenWalls}>Generate Walls</li>
       </ul>
       </div>
     );
