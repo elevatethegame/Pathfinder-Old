@@ -2,8 +2,8 @@
     background-color: rgb(13, 40, 65);
     color: white;
     font-family: "Open Sans", sans-serif;
-    font-size: 20px;
-    height: 80px;
+    font-size: 19px;
+    height: 70px;
 }
 
 .navBar {
@@ -23,18 +23,35 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: 0.5s;
 }
 
 .navItem:nth-child(1) {
     border-top: 5px solid #FDA085;
 }
 
+.navItem:nth-child(1):hover {
+    background: linear-gradient(to bottom, #FDA085, #F6D365);
+    border-radius: 3px;
+}
+
 .navItem:nth-child(2) {
     border-top: 5px solid #BFF098;
 }
 
+.navItem:nth-child(2):hover {
+    background: linear-gradient(to bottom, #BFF098, #6FD6FF);
+    border-radius: 3px;
+}
+
+
 .navItem:nth-child(3) {
     border-top: 5px solid #EA8D8D;
+}
+
+.navItem:nth-child(3):hover {
+    background: linear-gradient(to bottom, #EA8D8D, #A890FE);
+    border-radius: 3px;
 }
 
 
