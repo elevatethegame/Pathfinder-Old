@@ -12,19 +12,32 @@
     height: 100%;
     width: 75%;
     margin: auto;
-    align-items: center;
+    /* align-items: center; */
 }
 
 .navItem {
+    /* display: flex;
+    align-items: center; */
+    height: inherit;
+    width: 220px;
     display: flex;
     align-items: center;
-    margin-right: 50px;
-    height: 100%;
+    justify-content: center;
 }
 
 .navItem:nth-child(1) {
-    border-top: 10px solid #FDA085;
+    border-top: 5px solid #FDA085;
 }
+
+.navItem:nth-child(2) {
+    border-top: 5px solid #BFF098;
+}
+
+.navItem:nth-child(3) {
+    border-top: 5px solid #EA8D8D;
+}
+
+
 
 .navBar li:hover {
     cursor: pointer;
