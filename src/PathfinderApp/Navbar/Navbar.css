@@ -1,9 +1,10 @@
 .navContainer {
+    --height: 70px;
     background-color: rgb(13, 40, 65);
     color: white;
     font-family: "Open Sans", sans-serif;
     font-size: 19px;
-    height: 70px;
+    height: var(--height);
 }
 
 .navBar {
@@ -12,52 +13,92 @@
     height: 100%;
     width: 75%;
     margin: auto;
-    /* align-items: center; */
 }
 
 .navItem {
-    /* display: flex;
-    align-items: center; */
-    height: inherit;
+    --top-border: 5px;
     width: 220px;
-    display: flex;
+    transition: 0.5s;
+    overflow: hidden;
+    text-align: center;
+}
+
+.navItem:nth-child(2), .navItem:nth-child(3), .navItem:nth-child(4) { 
+    display: flex;   /* Only use display flex for navItem with no subMenu */
     align-items: center;
     justify-content: center;
-    transition: 0.5s;
+}
+
+.navItem:nth-child(2) span, .navItem:nth-child(3) span, .navItem:nth-child(4) span { 
+    margin-top: calc(-1 * var(--top-border));
+}
+
+.subMenu {
+    list-style-type: none;
 }
 
 .navItem:nth-child(1) {
-    border-top: 5px solid #FDA085;
+    border-top: var(--top-border) solid #FDA085;
+}
+
+.navItem:nth-child(1) span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--height);
+    margin-top: calc(-1.5 * var(--top-border));
 }
 
 .navItem:nth-child(1):hover {
     background: linear-gradient(to bottom, #FDA085, #F6D365);
     border-radius: 3px;
-    transform: scale(1.1);
+    transform: scale(1.1) translateY(12px);
     border-top: none;
+    z-index: 1;
+    height: calc(var(--height) * 4 - 5px);
+}
+
+.navItem:nth-child(1) > ul {
+    list-style-type: none;
 }
 
 .navItem:nth-child(2) {
-    border-top: 5px solid #BFF098;
+    border-top: var(--top-border) solid #BFF098;
+    height: inherit;
 }
 
 .navItem:nth-child(2):hover {
     background: linear-gradient(to bottom, #BFF098, #6FD6FF);
     border-radius: 3px;
-    transform: scale(1.1);
+    transform: scale(1.1) translateY(2px);
     border-top: none;
+    z-index: 1;
 }
 
-
 .navItem:nth-child(3) {
-    border-top: 5px solid #EA8D8D;
+    border-top: var(--top-border) solid #EA8D8D;
+    height: inherit;
 }
 
 .navItem:nth-child(3):hover {
     background: linear-gradient(to bottom, #EA8D8D, #A890FE);
     border-radius: 3px;
-    transform: scale(1.1);
+    transform: scale(1.1) translateY(2px);
     border-top: none;
+    z-index: 1;
+}
+
+.navItem:nth-child(4) {
+    border-top: var(--top-border) solid #D8B5FF;
+    height: inherit;
+}
+
+.navItem:nth-child(4):hover {
+    background: linear-gradient(to bottom, #D8B5FF, #1EAE98);
+    border-radius: 3px;
+    transform: scale(1.1) translateY(2px);
+    border-top: none;
+    z-index: 1;
 }
 
 
