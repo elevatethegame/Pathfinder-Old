@@ -46,11 +46,15 @@
     align-items: center;
     justify-content: center;
     height: var(--height);
-    margin-top: calc(-1.5 * var(--top-border));
+    margin-top: calc(-1 * var(--top-border));
+}
+
+.navItem:nth-child(1) li:hover {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 }
 
 .navItem:nth-child(1):hover {
-    background: linear-gradient(to bottom, #FDA085, #F6D365);
+    background-image: linear-gradient(to bottom, #FDA085, #F6D365);
     border-radius: 3px;
     transform: scale(1.1) translateY(12px);
     border-top: none;
