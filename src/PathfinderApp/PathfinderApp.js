@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import Navbar from './Navbar/Navbar';
 import Grid from './Grid/Grid';
-import runAStar from './Algorithms/AStar';
-import runBFS from './Algorithms/BFS';
-import runDFS from './Algorithms/DFS';
 import './PathfinderApp.css';
 import AStarGIF from './images/AStar.gif';
 
@@ -68,12 +65,16 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
       console.log(this.state.rows);
       const { pathLst, visitedLst } = 
           searchAlgorithm(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
-      // set the delay factor of the animation, each succeeding node has 
-      // 'stagger' millisecond more animation delay than preceding node
+
+      // This sleep function is necessary to ensure that the board is reset before
+      // changing the state of unvisited nodes to visited
       const sleep = (milliseconds) => {
         return new Promise(resolve => setTimeout(resolve, milliseconds));
       };
       await sleep(100);
+
+      // set the delay factor of the animation, each succeeding node has 
+      // 'stagger' millisecond more animation delay than preceding node
       const stagger = 100;
       console.log(pathLst);
       this.setState({

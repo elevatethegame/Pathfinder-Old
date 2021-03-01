@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import runAStar from '../Algorithms/AStar';
+import runBFS from '../Algorithms/BFS';
+import runDFS from '../Algorithms/DFS';
 import './Navbar.css';
 
 class Navbar extends Component {
@@ -9,6 +12,12 @@ class Navbar extends Component {
     }
   } 
 
+  setAlgorithm(algorithm) {
+    this.setState({
+      selectedAlgorithm: algorithm
+    });
+  }
+
   render() {
     return (
       <div className="navContainer">
@@ -16,9 +25,9 @@ class Navbar extends Component {
           <li className="navItem">
             <span>Pick an Algorithm</span>
             <ul className="subMenu">
-              <li className="subMenuItem"><span>A Star Search</span></li>
-              <li className="subMenuItem"><span>Breadth First Search</span></li>
-              <li className="subMenuItem"><span>Depth First Search</span></li>
+              <li className="subMenuItem" onClick={() => this.setAlgorithm(runAStar)}><span>A Star Search</span></li>
+              <li className="subMenuItem" onClick={() => this.setAlgorithm(runBFS)}><span>Breadth First Search</span></li>
+              <li className="subMenuItem" onClick={() => this.setAlgorithm(runDFS)}><span>Depth First Search</span></li>
             </ul>
           </li>
           <li className="navItem" onClick={() => this.props.onClickSearch(this.state.selectedAlgorithm)}><span>Start Search!</span></li>
