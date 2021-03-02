@@ -1,0 +1,21 @@
+.pop-up {
+    width: 550px;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    padding: 0 15px 30px;
+}
+
+.pop-up h1 {
+    font-family: "Dosis", sans-serif;
+    margin: 20px;
+}
+
+.pop-up p {
+    width: 80%;
+    font-family: "Open Sans", sans-serif;
+    font-size: 18px;
+    text-align: justify;
+    margin: 30px auto;
+    line-height: 1.6;
+}

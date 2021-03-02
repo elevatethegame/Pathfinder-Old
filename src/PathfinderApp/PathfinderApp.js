@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Navbar from './Navbar/Navbar';
 import Grid from './Grid/Grid';
 import './PathfinderApp.css';
-import AStarGIF from './images/AStar.gif';
 
 class PathfinderApp extends Component {  // PathfinderApp is the only stateful component of our application
 
@@ -172,20 +171,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
       <div>
         <Navbar onClickSearch={this.startSearch} onClickGenWalls={this.generateWalls} />
         <Grid rows={this.state.rows} pathLst={this.state.pathLst} animatePath={this.setOnPath} />
-        <div className="pop-up-container">
-          <div className="pop-up">
-            <h1>A Star Algorithm</h1>
-            <div><img src={AStarGIF} alt="AStar gif" /></div>
-            <p>
-              The A Star Algorithm is a "smart" algorithm that chooses to explore nodes based on a sum total of
-              the actual cost required to travel to the node and how near that node appears to be to the goal.
-            </p>
-            <p>
-              Nodes with lower sum totals are explored first. How near the node appears to be to the goal is estimated by a heuristic function, 
-              in this case we use the Manhattan Distance between the node and the goal.
-            </p>
-          </div>
-        </div>
+
       </div>
     );
   }
