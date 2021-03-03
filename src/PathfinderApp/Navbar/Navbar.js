@@ -41,7 +41,7 @@ class Navbar extends Component {
           <Popup 
             algoName="A Star Algorithm"
             algoGIF={AStarGIF}
-            description1={"The A Star Algorithm is a \"smart\" algorithm that chooses to explore nodes based on a sum total of" +
+            description1={"The A Star Algorithm is a \"smart\" algorithm that chooses to explore nodes based on a sum total of " +
             "the actual cost required to travel to the node and how near that node appears to be to the goal."}
             description2={"Nodes with lower sum totals are explored first. How near the node appears to be to the goal " + 
             "is estimated by a heuristic function; in this case we use the Manhattan Distance between the node and the goal."}

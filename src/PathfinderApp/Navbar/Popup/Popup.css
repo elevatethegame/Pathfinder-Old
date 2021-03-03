@@ -1,9 +1,10 @@
 .pop-up {
-    width: 550px;
+    width: 600px;
     background-color: white;
     border-radius: 10px;
     text-align: center;
-    padding: 0 15px 30px;
+    padding: 0 0 30px;
+    position: relative;
 }
 
 .pop-up h1 {
@@ -18,4 +19,37 @@
     text-align: justify;
     margin: 30px auto;
     line-height: 1.6;
+}
+
+.imageLayer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.arrow {
+    font-size: 45px;
+    color: rgb(44, 168, 177);
+}
+
+.arrow:hover {
+    cursor: pointer;
+    color: rgb(29, 74, 116);
+}
+
+.rightArrow {
+    transform: rotate(180deg);
+}
+
+.x-button {
+    font-size: 35px;
+    color: rgb(231, 133, 41);
+    position: absolute;
+    top: 15px;
+    right: 30px;
+}
+
+.x-button:hover {
+    cursor: pointer;
+    color: rgb(100, 33, 13);
 }
