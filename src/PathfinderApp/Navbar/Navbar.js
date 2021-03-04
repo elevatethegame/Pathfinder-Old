@@ -28,7 +28,8 @@ class Navbar extends Component {
       {algoName: "Depth First Search Algorithm", algoGIF:DFSGIF, 
       description1:"The Depth First Seach Algorithm is an algorithm for which at any point in time we simply pick an unvisited neighbour of the current node to explore, " + 
       "and repeat until we finally reach a node which either has no more neighbours or whose neighbours have all already been visited.",
-      description2:"As one would expect, there are no guarantees on the optimality of the path found between the start and the goal node."}
+      description2:"We then backtrack to nodes we visited previously, finding the first one which has unvisited neighbours from which we continue exploring again. " + 
+      "As one would expect, there are no guarantees on the optimality of the path found between the start and the goal node."}
     ]
 
     this.state = {

@@ -5,6 +5,7 @@
     text-align: center;
     padding: 0 0 30px;
     position: relative;
+    z-index: 1;
 }
 
 .pop-up h1 {
