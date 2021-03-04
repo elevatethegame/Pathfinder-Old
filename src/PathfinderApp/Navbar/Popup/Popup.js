@@ -3,12 +3,12 @@ import './Popup.css';
 function Popup(props) {
     return (
         <div className="pop-up">
-            <i class="fas fa-times x-button"></i>
+            <i onClick={props.closePopup} className="fas fa-times x-button"></i>
             <h1>{props.algoName}</h1>
             <div className="imageLayer">
-                <i className="fas fa-arrow-circle-left arrow"></i>
+                <i onClick={props.navigateLeft} className="fas fa-arrow-circle-left arrow"></i>
                 <img src={props.algoGIF} alt={props.algoName} />
-                <i className="fas fa-arrow-circle-left arrow rightArrow"></i>
+                <i onClick={props.navigateRight} className="fas fa-arrow-circle-left arrow rightArrow"></i>
             </div>
             <p>
                 {props.description1}

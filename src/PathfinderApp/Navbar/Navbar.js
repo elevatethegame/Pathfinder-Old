@@ -39,6 +39,20 @@ class Navbar extends Component {
     }
   } 
 
+  navigateLeftOfPopup = () => {
+    // Javascript % function works differently for negative numbers from what we expect
+    const modulo = (n, m) => { return ((n % m) + m) % m; }
+    this.setState({
+      currentPopup: modulo((this.state.currentPopup - 1), this.state.popups.length)
+    });
+  }
+
+  navigateRightOfPopup = () => {
+    this.setState({
+      currentPopup: (this.state.currentPopup + 1) % this.state.popups.length
+    });
+  }
+
   setAlgorithm = (algorithm) => {
     this.setState({
       selectedAlgorithm: algorithm
@@ -53,6 +67,7 @@ class Navbar extends Component {
 
   closePopup = () => {
     this.setState({
+      currentPopup: 0,
       shouldShowPopup: false
     });
   }
@@ -67,6 +82,9 @@ class Navbar extends Component {
             algoGIF={this.state.popups[this.state.currentPopup].algoGIF}
             description1={this.state.popups[this.state.currentPopup].description1}
             description2={this.state.popups[this.state.currentPopup].description2}
+            navigateLeft={this.navigateLeftOfPopup}
+            navigateRight={this.navigateRightOfPopup}
+            closePopup={this.closePopup}
           >
           </Popup>
         </div>
