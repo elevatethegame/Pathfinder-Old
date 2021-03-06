@@ -83,7 +83,7 @@
     transform: scale(1.1) translateY(12px);
     border-top: none;
     z-index: 1;
-    height: calc(var(--height) * 4 - 5px);  /* Necessary to render the submenu items which were initially hidden due to overflow */
+    height: calc(var(--height) * 5 - 5px);  /* Necessary to render the submenu items which were initially hidden due to overflow */
 }
 
 .navItem:nth-child(1) > ul {

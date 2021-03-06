@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import runAStar from '../Algorithms/AStar';
 import runBFS from '../Algorithms/BFS';
 import runDFS from '../Algorithms/DFS';
+import runGreedy from '../Algorithms/GreedyBestFS';
 import Popup from './Popup/Popup';
 import AStarGIF from '../images/AStar.gif';
 import BFSGIF from '../images/BFS.gif'
@@ -105,6 +106,7 @@ class Navbar extends Component {
                   <li className="subMenuItem" onClick={() => this.setAlgorithm(runAStar)}><span>A Star Search</span></li>
                   <li className="subMenuItem" onClick={() => this.setAlgorithm(runBFS)}><span>Breadth First Search</span></li>
                   <li className="subMenuItem" onClick={() => this.setAlgorithm(runDFS)}><span>Depth First Search</span></li>
+                  <li className="subMenuItem" onClick={() => this.setAlgorithm(runDFS)}><span>Greedy Best First Search</span></li>
                 </ul>
               </li>
               <li className="navItem" onClick={() => this.props.onClickSearch(this.state.selectedAlgorithm)}><span>Start Search!</span></li>
