@@ -26,12 +26,12 @@
     --height: 70px;
     background-color: rgb(13, 40, 65);
     color: white;
-    font-family: "Open Sans", sans-serif;
-    font-size: 19px;
     height: var(--height);
 }
 
 .navBar {
+    font-family: "Open Sans", sans-serif;
+    font-size: 19px;
     list-style-type: none;
     display: flex;
     height: 100%;
@@ -71,6 +71,10 @@
     justify-content: center;
     height: var(--height);
     margin-top: calc(-1 * var(--top-border));
+}
+
+.subMenuItem span {
+    font-size: 16px;
 }
 
 .navItem:nth-child(1) li:hover {

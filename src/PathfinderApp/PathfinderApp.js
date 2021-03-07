@@ -17,14 +17,22 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
       rows.push(nodes);
     }
 
-    rows[15][20].isStartNode = true;  // Initialize a default start node
-    // rows[15][50].isEndNode = true;  // Initialize a default end node
-    rows[15][27].isEndNode = true;  // Initialize a default end node
+    // Deployment Initialization
+    const startCoord = [15, 20];
+    const endCoord = [15, 50];
+    rows[startCoord[0]][startCoord[1]].isStartNode = true;  // Initialize a default start node
+    rows[endCoord[0]][endCoord[1]].isEndNode = true;  // Initialize a default end node
+
+    // Example mini maze for recording GIF
+    // const startCoord = [15, 20];
+    // const endCoord = [15, 27];
+    // rows[startCoord[0]][startCoord[1]].isStartNode = true;  // Initialize a default start node
+    // rows[endCoord[0]][endCoord[1]].isEndNode = true;  // Initialize a default end node
 
     this.state = {
       rows: rows,
-      startCoord: [15, 20],
-      endCoord: [15, 27],
+      startCoord: startCoord,
+      endCoord: endCoord,
       pathLst: null
     }
   }
@@ -74,7 +82,8 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
 
       // set the delay factor of the animation, each succeeding node has 
       // 'stagger' millisecond more animation delay than preceding node
-      const stagger = 100;
+      // const stagger = 100;  // Temporary code to create GIF ===========================================================================
+      const stagger = 40;
       console.log(pathLst);
       this.setState({
         pathLst: pathLst
@@ -101,12 +110,12 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     const probability = (p) => { return Math.random() <= p; };
     rows.forEach((row) => {
       row.forEach((node) => {
-        // if (probability(0.3)) {
-        //   node.isWallNode = true;
-        // } else {
-        //   node.isWallNode = false;
-        // }
-        node.isWallNode = false;  // temporary
+        if (probability(0.3)) {
+          node.isWallNode = true;
+        } else {
+          node.isWallNode = false;
+        }
+        // node.isWallNode = false;  // Temporary code to create GIF ===========================================================================
         node.isVisitedNode = false;
         node.isOnPath = false;
         node.delay = 0;
@@ -115,50 +124,47 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
 
     // Temporary code to create GIF ===========================================================================
     // The below 2 for loops are temporary boundary to contain the start and end node. Required to create a GIF.
-    for (let i = 10; i <= 20; i++) {
-      rows[i][17].isWallNode = true;
-      rows[i][30].isWallNode = true;
-    }
-    for (let j = 17; j <= 30; j++) {
-      rows[10][j].isWallNode = true;
-      rows[20][j].isWallNode = true;
-    }
-    rows[14][18].isWallNode = true;
-    rows[17][18].isWallNode = true;
-    rows[19][18].isWallNode = true;
-    rows[12][19].isWallNode = true;
-    // rows[15][19].isWallNode = true;
-    // rows[16][19].isWallNode = true;
-    rows[18][19].isWallNode = true;
-    rows[16][20].isWallNode = true;
-    rows[19][20].isWallNode = true;
-    rows[19][21].isWallNode = true;
-    rows[18][21].isWallNode = true;
-    rows[16][21].isWallNode = true;
-    rows[15][21].isWallNode = true;
-    rows[14][21].isWallNode = true;
-    rows[12][21].isWallNode = true;
-    rows[13][22].isWallNode = true;
-    rows[13][23].isWallNode = true;
-    rows[19][23].isWallNode = true;
-    rows[17][24].isWallNode = true;
-    rows[16][24].isWallNode = true;
-    rows[16][25].isWallNode = true;
-    rows[14][25].isWallNode = true;
-    rows[11][25].isWallNode = true;
-    rows[17][26].isWallNode = true;
-    rows[15][26].isWallNode = true;
-    // rows[13][26].isWallNode = true;
-    rows[17][27].isWallNode = true;
-    rows[12][27].isWallNode = true;
-    rows[11][27].isWallNode = true;
-    rows[19][28].isWallNode = true;
-    rows[18][28].isWallNode = true;
-    rows[15][28].isWallNode = true;
-    rows[13][28].isWallNode = true;
-    rows[11][28].isWallNode = true;
-    rows[17][29].isWallNode = true;
-    rows[13][29].isWallNode = true;
+    // for (let i = 10; i <= 20; i++) {
+    //   rows[i][17].isWallNode = true;
+    //   rows[i][30].isWallNode = true;
+    // }
+    // for (let j = 17; j <= 30; j++) {
+    //   rows[10][j].isWallNode = true;
+    //   rows[20][j].isWallNode = true;
+    // }
+    // rows[14][18].isWallNode = true;
+    // rows[17][18].isWallNode = true;
+    // rows[19][18].isWallNode = true;
+    // rows[12][19].isWallNode = true;
+    // rows[18][19].isWallNode = true;
+    // rows[16][20].isWallNode = true;
+    // rows[19][20].isWallNode = true;
+    // rows[19][21].isWallNode = true;
+    // rows[18][21].isWallNode = true;
+    // rows[16][21].isWallNode = true;
+    // rows[15][21].isWallNode = true;
+    // rows[14][21].isWallNode = true;
+    // rows[12][21].isWallNode = true;
+    // rows[13][22].isWallNode = true;
+    // rows[13][23].isWallNode = true;
+    // rows[19][23].isWallNode = true;
+    // rows[17][24].isWallNode = true;
+    // rows[16][24].isWallNode = true;
+    // rows[16][25].isWallNode = true;
+    // rows[14][25].isWallNode = true;
+    // rows[11][25].isWallNode = true;
+    // rows[17][26].isWallNode = true;
+    // rows[15][26].isWallNode = true;
+    // rows[17][27].isWallNode = true;
+    // rows[12][27].isWallNode = true;
+    // rows[11][27].isWallNode = true;
+    // rows[19][28].isWallNode = true;
+    // rows[18][28].isWallNode = true;
+    // rows[15][28].isWallNode = true;
+    // rows[13][28].isWallNode = true;
+    // rows[11][28].isWallNode = true;
+    // rows[17][29].isWallNode = true;
+    // rows[13][29].isWallNode = true;
     // Temporary code to create GIF ===========================================================================
 
     this.setState({
