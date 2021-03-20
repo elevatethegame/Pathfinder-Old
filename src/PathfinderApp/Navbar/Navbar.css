@@ -82,9 +82,11 @@
 }
 
 .navItem:nth-child(1):hover {
+    -webkit-font-smoothing: subpixel-antialiased;
+    backface-visibility: hidden;
     background-image: linear-gradient(to bottom, #FDA085, #F6D365);
     border-radius: 3px;
-    transform: scale(1.1) translateY(12px);
+    transform: scale(1.1) translateY(12px) translateZ(0);
     border-top: none;
     z-index: 1;
     height: calc(var(--height) * 5 - 5px);  /* Necessary to render the submenu items which were initially hidden due to overflow */

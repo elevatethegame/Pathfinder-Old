@@ -55,6 +55,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     visitedLst.forEach((coord, visitedOrder) => {
       const [i, j] = coord;
       rows[i][j].delay = stagger * visitedOrder;
+      console.log(i, j, rows[i][j].delay);
       rows[i][j].isVisitedNode = true;
     });
     this.setState({
@@ -69,9 +70,10 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     this.setState({ 
       rows: this.getClearedPathState()
     }, async () => {
-      console.log(this.state.rows);
       const { pathLst, visitedLst } = 
           searchAlgorithm(...this.state.startCoord, ...this.state.endCoord, this.state.rows); 
+
+      console.log(visitedLst);
 
       // This sleep function is necessary to ensure that the board is reset before
       // changing the state of unvisited nodes to visited
@@ -84,7 +86,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
       // 'stagger' millisecond more animation delay than preceding node
       // const stagger = 100;  // Temporary code to create GIF ===========================================================================
       const stagger = 40;
-      console.log(pathLst);
+      // console.log(pathLst);
       this.setState({
         pathLst: pathLst
       }, () => this.setVisited(visitedLst, stagger));

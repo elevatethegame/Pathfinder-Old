@@ -38,6 +38,7 @@ const runDFS = function(start_i, start_j, end_i, end_j, rows) {
     const visitedLst = Array(0);  // list of [i, j] coordinates representing the order of visited nodes from the first to the last
     while (deque.length > 0) {
         const currNode = deque.pop();
+        if (visited.has([currNode.i, currNode.j].toString())) continue;
         visited.add([currNode.i, currNode.j].toString());
         visitedLst.push([currNode.i, currNode.j]);
         const neighbours = getNeighbours(currNode, rows.length - 1, rows[0].length - 1);
