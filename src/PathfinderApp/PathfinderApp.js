@@ -66,7 +66,7 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
   // Run the search with the algorithm passed as argument
   startSearch = (searchAlgorithm) => {  
     console.log("Running Search Algorithm");
-    console.log("Clearing Board");
+    console.log("Clearing Visited Path");
     this.setState({ 
       rows: this.getClearedPathState()
     }, async () => {
@@ -107,12 +107,14 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
   }
 
   generateWalls = () => {
+    let rows = this.state.rows.slice();
+
     console.log("Generating Walls");
-    const rows = this.state.rows.slice();
-    const probability = (p) => { return Math.random() <= p; };
+    rows = this.state.rows.slice();
+    const successWithProbability = (p) => { return Math.random() <= p; };
     rows.forEach((row) => {
       row.forEach((node) => {
-        if (probability(0.3)) {
+        if (successWithProbability(0.3)) {
           node.isWallNode = true;
         } else {
           node.isWallNode = false;
@@ -122,6 +124,10 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
         node.isOnPath = false;
         node.delay = 0;
       });
+    });
+
+    this.setState({
+      rows: rows
     });
 
     // Temporary code to create GIF ===========================================================================
@@ -168,10 +174,6 @@ class PathfinderApp extends Component {  // PathfinderApp is the only stateful c
     // rows[17][29].isWallNode = true;
     // rows[13][29].isWallNode = true;
     // Temporary code to create GIF ===========================================================================
-
-    this.setState({
-      rows: rows
-    })
   }
 
   render() {

@@ -14,7 +14,7 @@ function Grid(props) {
         }
         return <MyNode className="end" key={nodeIndex} isEndNode={true}></MyNode>
       } else if (node.isWallNode) {
-        return <MyNode className="wall" key={nodeIndex} isEndNode={false}></MyNode>
+        return <MyNode className="wall" key={nodeIndex} delay={0} isEndNode={false}></MyNode>
       } else if (node.isOnPath) {
         return <MyNode className="onpath" key={nodeIndex} delay={node.delay} isEndNode={false}></MyNode>
       } else if (node.isVisitedNode) {
